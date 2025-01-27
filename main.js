@@ -6,36 +6,22 @@ d.onclick = async () => {
   let top = 2;
   let baseline = 2 + 54;
   let maxWidth = 0;
-  let rank = ["𝐒","𝐀","𝐁","𝐂","𝐃","𝐄","𝐅"];
-  let color = ["#b32","#c83","#ba0","#6a2","#193","#237","#47a"];
-
-  ctx.textBaseline = "middle";
-  if (title) {
-    ctx.fillStyle = "#111";
-    ctx.fillRect(0, 0, 2496, 108);
-    ctx.fillStyle = "#ddd";
-    ctx.font = "600 40px menlo,consolas,monospace,yu gothic,sans-serif";
-    for (let i = 0, left = 32; i < title.length; ++i) {
-      let c = title[i];
-      let metrics = ctx.measureText(c);
-      ctx.fillText(c, left, 56);
-      left += metrics.width + metrics.actualBoundingBoxLeft;
-    }
-    top = 110;
-    baseline = 164;
-  }
 
   ctx.fillStyle = "#ddd";
-  ctx.textAlign = "left";
-  ctx.font = "600 32px menlo,consolas,monospace,yu gothic,sans-serif";
-  ctx.save();
+  ctx.textBaseline = "middle";
 
+  if (title) {
+    top = 92;
+    baseline = 146;
+  }
+
+  ctx.font = "600 32px menlo,consolas,monospace,yu gothic,sans-serif";
   for (let i = 0; i < 7; ++i) {
     let left = 64 + 8 + 2;
     let rowHeight = 108;
     let text = p[i].textContent;
     if (text) {
-      text = [...text];
+      text = [...text.trim()];
       let wordWidth = 0;
       let wordLeft = left;
       for (let j = 0; j < text.length; ++j) {
@@ -60,7 +46,7 @@ d.onclick = async () => {
               rowHeight += 48;
               wordLeft = left;
             } else {
-              if (wordWidth < 2486 - (64 + 8 + 2 + 2)) {
+              if (wordWidth < 2486 - (64 + 8 + 2 + 8 + 2)) {
                 ctx.drawImage(cvs, wordLeft, baseline - 16, wordWidth, 32, left = 64 + 8 + 2, baseline += 48, wordWidth, 32);
                 ctx.clearRect(wordLeft, baseline - 16, wordWidth, 32);
                 left += wordWidth;
@@ -74,24 +60,38 @@ d.onclick = async () => {
           }
         }
       }
-
-      ctx.fillStyle = color[i];
+      ctx.save();
+      ctx.fillStyle = ["#80b","#a10","#b70","#a90","#183","#608","#136"][i];
       ctx.fillRect(2, top, 64, rowHeight);
-      ctx.fillStyle = "#ddd";
       ctx.font = "600 40px serif";
       ctx.textAlign = "center";
-      ctx.fillText(rank[i], 34, top + (rowHeight / 2));
+      ctx.fillStyle = "#ddd";
+      ctx.fillText(["𝐒","𝐀","𝐁","𝐂","𝐃","𝐄","𝐅"][i], 34, top + (rowHeight / 2));
       top += rowHeight + 2;
       baseline += 108 + 2;
       maxWidth < left && (maxWidth = left);
       ctx.restore();
     }
   }
+  if (title) {
+    ctx.font = "600 36px menlo,consolas,monospace,yu gothic,sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(title, (maxWidth + 64) / 2, 52);
+    /*
+    for (let i = 0, left = 16; i < title.length; ++i) {
+      let c = title[i];
+      let metrics = ctx.measureText(c);
+      ctx.fillText(c, left, 38);
+      left += metrics.width + metrics.actualBoundingBoxLeft;
+    }*/
+    // top = 74;
+    //baseline = 128;
+  }
 
   if (maxWidth) {
-    let renderer = new OffscreenCanvas(maxWidth, top);
+    let renderer = new OffscreenCanvas(maxWidth + 64, top);
     renderer.getContext("bitmaprenderer").transferFromImageBitmap(
-      await createImageBitmap(cvs, 0, 0, maxWidth, top)
+      await createImageBitmap(cvs, 0, 0, maxWidth + 64, top)
     );
     let url = URL.createObjectURL(await renderer.convertToBlob());
     let a = document.createElement("a");
