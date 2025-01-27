@@ -2,97 +2,81 @@ d.onclick = async () => {
   let cvs = new OffscreenCanvas(2496, 4096);
   let ctx = cvs.getContext("2d", { alpha: !1 });
   let title = d.nextSibling.value;
-  let p = document.body.getElementsByTagName("p"); 
-  let top = 2;
-  let baseline = 2 + 54;
+  let p = document.body.getElementsByTagName("p");
+  let top = title ? 92 : 2;
+  let baseline = title ? 146 : 56;
   let maxWidth = 0;
-
+  let i = 0;
   ctx.fillStyle = "#ddd";
-  ctx.textBaseline = "middle";
-
-  if (title) {
-    top = 92;
-    baseline = 146;
-  }
-
   ctx.font = "600 32px menlo,consolas,monospace,yu gothic,sans-serif";
-  for (let i = 0; i < 7; ++i) {
-    let left = 64 + 8 + 2;
+  ctx.textBaseline = "middle";
+  while (i < 7) {
+    let left = 74;
     let rowHeight = 108;
-    let text = p[i].textContent;
+    let text = p[i].textContent.trim();
     if (text) {
-      text = [...text.trim()];
       let wordWidth = 0;
       let wordLeft = left;
-      for (let j = 0; j < text.length; ++j) {
+      let j = 0;
+      let textLen = (text = [...text]).length;
+      while (j < textLen) {
         let c = text[j];
-        if (c == "\n") {
-          left = 64 + 8 + 2;
-          baseline += 48;
-          rowHeight += 48;
-          wordLeft = left;
-        } else {
-          let metrics = ctx.measureText(c);
-          let cWidth = metrics.width + metrics.actualBoundingBoxLeft;
+        if (c != "\n") {
+          let { width, actualBoundingBoxLeft } =  ctx.measureText(c);
+          let cWidth = width + actualBoundingBoxLeft;
           let right = left + cWidth;
           if (right < 2476) {
             ctx.fillText(c, left, baseline);
             left = right;
             wordWidth += cWidth;
           } else {
+            left = 74;
+            baseline += 48;
+            rowHeight += 48;
             if (/s/.test(c)) {
-              left = 64 + 8 + 2;
-              baseline += 48;
-              rowHeight += 48;
               wordLeft = left;
             } else {
               if (wordWidth < 2486 - (64 + 8 + 2 + 8 + 2)) {
-                ctx.drawImage(cvs, wordLeft, baseline - 16, wordWidth, 32, left = 64 + 8 + 2, baseline += 48, wordWidth, 32);
+                ctx.drawImage(cvs, wordLeft, baseline - 16, wordWidth, 32, left, baseline, wordWidth, 32);
                 ctx.clearRect(wordLeft, baseline - 16, wordWidth, 32);
                 left += wordWidth;
               } else {
-                ctx.fillText(c, left = 64 + 8 + 2, baseline += 48);
+                ctx.fillText(c, left, baseline);
                 // wordLeft = left + wordWidth;
                 left += wordWidth;
               }
-              rowHeight += 48;
             }
           }
-        }
+        } else (
+          left = 74,
+          baseline += 48,
+          rowHeight += 48,
+          wordLeft = left
+        )
+        ++j
       }
       ctx.save();
-      ctx.fillStyle = ["#80b","#a10","#b70","#a90","#183","#608","#136"][i];
+      ctx.fillStyle = ["#80b","#a10","#b70","#a90","#183","#068","#136"][i];
       ctx.fillRect(2, top, 64, rowHeight);
+      ctx.fillStyle = "#ddd";
       ctx.font = "600 40px serif";
       ctx.textAlign = "center";
-      ctx.fillStyle = "#ddd";
       ctx.fillText(["𝐒","𝐀","𝐁","𝐂","𝐃","𝐄","𝐅"][i], 34, top + (rowHeight / 2));
       top += rowHeight + 2;
       baseline += 108 + 2;
       maxWidth < left && (maxWidth = left);
       ctx.restore();
     }
+    ++i;
   }
   if (title) {
     ctx.font = "600 36px menlo,consolas,monospace,yu gothic,sans-serif";
     ctx.textAlign = "center";
     ctx.fillText(title, (maxWidth + 64) / 2, 52);
-    /*
-    for (let i = 0, left = 16; i < title.length; ++i) {
-      let c = title[i];
-      let metrics = ctx.measureText(c);
-      ctx.fillText(c, left, 38);
-      left += metrics.width + metrics.actualBoundingBoxLeft;
-    }*/
-    // top = 74;
-    //baseline = 128;
   }
-
   if (maxWidth) {
     let renderer = new OffscreenCanvas(maxWidth + 64, top);
-    renderer.getContext("bitmaprenderer").transferFromImageBitmap(
-      await createImageBitmap(cvs, 0, 0, maxWidth + 64, top)
-    );
+    renderer.getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(cvs, 0, 0, maxWidth + 64, top));
     let url = URL.createObjectURL(await renderer.convertToBlob());
     let a = document.createElement("a");
     a.href = url;
