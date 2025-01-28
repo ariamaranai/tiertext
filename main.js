@@ -1,8 +1,10 @@
 d.onclick = async () => {
+  let a = document;
+  let b = a.body;
   if (d.textContent != "✖") {
     let cvs = new OffscreenCanvas(2496, 4096);
     let ctx = cvs.getContext("2d", { alpha: !1 });
-    let p = document.body.getElementsByTagName("p");
+    let p = b.getElementsByTagName("p");
     let top = 2;
     let baseline = 56;
     let maxWidth = 0;
@@ -26,28 +28,27 @@ d.onclick = async () => {
             let { width, actualBoundingBoxLeft } =  ctx.measureText(c);
             let cWidth = width + actualBoundingBoxLeft;
             let right = left + cWidth;
-            if (right < 2476) {
-              ctx.fillText(c, left, baseline);
-              left = right;
-              wordWidth += cWidth;
-            } else {
-              left = 74;
-              baseline += 48;
-              rowHeight += 48;
-              if (/s/.test(c)) {
-                wordLeft = left;
-              } else {
-                if (wordWidth < 2486 - (64 + 8 + 2 + 8 + 2)) {
-                  ctx.drawImage(cvs, wordLeft, baseline - 16, wordWidth, 32, left, baseline, wordWidth, 32);
-                  ctx.clearRect(wordLeft, baseline - 16, wordWidth, 32);
-                  left += wordWidth;
-                } else {
-                  ctx.fillText(c, left, baseline);
-                  // wordLeft = left + wordWidth;
-                  left += wordWidth;
-                }
-              }
-            }
+            right < 2476 ? (
+              ctx.fillText(c, left, baseline),
+              left = right,
+              wordWidth += cWidth
+            ) : (
+              left = 74,
+              baseline += 48,
+              rowHeight += 48,
+              /s/.test(c)
+                ? wordLeft = left
+                : wordWidth < 2486 - (64 + 8 + 2 + 8 + 2)
+                  ? (
+                    ctx.drawImage(cvs, wordLeft, baseline - 16, wordWidth, 32, left, baseline, wordWidth, 32),
+                    ctx.clearRect(wordLeft, baseline - 16, wordWidth, 32),
+                    left += wordWidth
+                  )
+                  : (
+                    ctx.fillText(c, left, baseline),
+                    left += wordWidth
+                  )
+            )
           } else (
             left = 74,
             baseline += 48,
@@ -73,23 +74,10 @@ d.onclick = async () => {
     if (maxWidth) {
       let result = document.createElement("canvas");
       result.getContext("bitmaprenderer").transferFromImageBitmap(
-        await createImageBitmap(cvs, 0, 0, result.width = maxWidth + 64, result.height = top)
-      );
-      let tier = d.nextSibling;
-      let rect = tier.getBoundingClientRect();
-      document.body.appendChild(result).setAttribute("style",
-        "display:flow;position:absolute;top:54;opacity:0;width:" +
-        rect.width +
-        ";height:" +
-        rect.height
-      );
-      tier.setAttribute("style", "background:#222");
+          await createImageBitmap(cvs, 0, 0, result.width = maxWidth + 64, result.height = top)
+        );
+      document.body.appendChild(result).setAttribute("style", "position:fixed;top:54;width:1248;height:4096;opacity:0");
       d.textContent = "✖";
     }
-  } else {
-    let tier = d.nextSibling;
-    tier.style = "";
-    tier.nextSibling.remove();
-    d.textContent = "⇣DOWNLOAD";
-  }
+  } else b.lastChild.remove(d.textContent = "⇣DOWNLOAD")
 }
