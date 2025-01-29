@@ -76,7 +76,7 @@ d.onclick = async () => {
       result.getContext("bitmaprenderer").transferFromImageBitmap(
           await createImageBitmap(cvs, 0, 0, result.width = maxWidth + 64, result.height = top)
         );
-      document.body.appendChild(result).setAttribute("style", "position:fixed;top:54;width:1248;height:4096;opacity:0");
+      document.body.appendChild(result).setAttribute("style", "position:fixed;top:54;width:1248;height:4096;opacity:.01");
       d.textContent = "✖";
     }
   } else b.lastChild.remove(d.textContent = "⇣DOWNLOAD")
