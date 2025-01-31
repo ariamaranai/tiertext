@@ -1,79 +1,72 @@
 d.onclick = async () => {
-  let b = document.body,
-      cvs = new OffscreenCanvas(2496, 4096),
-      e = cvs.getContext("2d", { alpha: !1 }),
-      p = b.getElementsByTagName("p"),
-      top = 2,
-      baseline = 56,
-      maxWidth = 0,
-      i = 0;
+  let o = new OffscreenCanvas(2496, 4096),
+      e = o.getContext("2d", { alpha: !1 }),
+      a = 2,
+      b = 56,
+      w = 730,
+      i = 0,
+      d = document,
+      p = d.body.getElementsByTagName("p");
   e.fillRect(0, 0, 2496, 4096),
   e.fillStyle = "#ddd",
   e.font = "600 32px menlo,consolas,monospace,yu gothic,sans-serif",
   e.textBaseline = "middle";
   do {
-    let left = 74,
-        rowHeight = 108,
-        text = p[i].textContent.trim();
-    if (text) {
+    let l = 74,
+        h = 108,
+        t = p[i].textContent.trim();
+    if (t) {
       let wordWidth = 0,
-          wordLeft = left,
-          j = 0,
-          textLen = (text = [...text]).length;
-      while (j < textLen) {
-        let c = text[j];
+          wordLeft = l,
+          n = 0,
+          k = (t = [...t]).length;
+      do {
+        let c = t[n];
         if (c != "\n") {
-          let { width, actualBoundingBoxLeft } =  e.measureText(c);
-          let cWidth = width + actualBoundingBoxLeft;
-          let right = left + cWidth;
-          right < 2476 ? (
-            e.fillText(c, left, baseline),
-            left = right,
-            wordWidth += cWidth
+          let f = e.measureText(c);
+          let r = (f = f.width + f.actualBoundingBoxLeft) + l;
+          r < 2476 ? (
+            e.fillText(c, l, b),
+            l = r,
+            wordWidth += f
           ) : (
-            left = 74,
-            baseline += 48,
-            rowHeight += 48,
+            l = 74,
+            b += 48,
+            h += 48,
             /s/.test(c)
-              ? wordLeft = left
-              : wordWidth < 2486 - (64 + 8 + 2 + 8 + 2)
-                ? (
-                  e.drawImage(cvs, wordLeft, baseline - 16, wordWidth, 32, left, baseline, wordWidth, 32),
-                  e.clearRect(wordLeft, baseline - 16, wordWidth, 32),
-                  left += wordWidth
-                )
-                : (
-                  e.fillText(c, left, baseline),
-                  left += wordWidth
-                )
+              ? wordLeft = 74
+              : (
+                wordWidth < 2418
+                  ? (
+                    e.drawImage(o, wordLeft, f = b - 16, wordWidth, 32, l, b, wordWidth, 32),
+                    e.clearRect(wordLeft, f, wordWidth, 32)
+                  )
+                  : e.fillText(c, l, b),
+                l += wordWidth
+              )
           )
         } else (
-          left = 74,
-          baseline += 48,
+          l = 74,
+          b += 48,
           rowHeight += 48,
-          wordLeft = left
+          wordLeft = l
         )
-        ++j
-      }
+      } while (++n < k)
       e.save(),
       e.fillStyle = ["#80b","#a10","#b70","#a90","#183","#068","#136"][i],
-      e.fillRect(2, top, 64, rowHeight),
+      e.fillRect(2, a, 64, h),
       e.fillStyle = "#ddd",
       e.font = "600 40px serif",
       e.textAlign = "center",
-      e.fillText(["𝐒","𝐀","𝐁","𝐂","𝐃","𝐄","𝐅"][i], 34, top + (rowHeight / 2)),
-      top += rowHeight + 2,
-      baseline += 108 + 2,
-      maxWidth < left && (maxWidth = left),
+      e.fillText(["𝐒","𝐀","𝐁","𝐂","𝐃","𝐄","𝐅"][i], 34, a + h / 2),
+      a += h + 2,
+      b += 110,
+      w < l && (w = l),
       e.restore()
     }
   } while (++i < 7);
-  maxWidth && (
-    (e = new OffscreenCanvas(maxWidth + 64, top))
-      .getContext("bitmaprenderer").transferFromImageBitmap(
-        await createImageBitmap(cvs, 0, 0, maxWidth + 64, height = top)
-      ),
-    (p = document.createElement("a")).href = URL.createObjectURL(await e.convertToBlob()),
-    p.click(p.download = "")
-  )
+  (e = new OffscreenCanvas(w += 110, a))
+    .getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(o, 0, 0, w, a)),
+  (p = d.createElement("a")).href = URL.createObjectURL(await e.convertToBlob()),
+  p.click(p.download = "")
 }
