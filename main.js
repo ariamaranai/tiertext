@@ -16,8 +16,8 @@ d.onclick = async () => {
         h = 108,
         t = p[i].textContent.trim();
     if (t) {
-      let wordWidth = 0,
-          wordLeft = l,
+      let o = 0,
+          d = l,
           n = 0,
           k = (t = [...t]).length;
       do {
@@ -28,18 +28,18 @@ d.onclick = async () => {
           r < 2476 ? (
             e.fillText(c, l, b),
             l = r,
-            wordWidth += f
+            d += f
           ) : (
             l = 74,
             b += 48,
             h += 48,
             /s/.test(c)
-              ? wordLeft = 74
+              ? d = 74
               : (
-                wordWidth < 2418
+              o < 2418
                   ? (
-                    e.drawImage(o, wordLeft, f = b - 16, wordWidth, 32, l, b, wordWidth, 32),
-                    e.clearRect(wordLeft, f, wordWidth, 32)
+                    e.drawImage(o, d, f = b - 16, o, 32, l, b, o, 32),
+                    e.clearRect(d, f, o, 32)
                   )
                   : e.fillText(c, l, b),
                 l += wordWidth
@@ -48,8 +48,8 @@ d.onclick = async () => {
         } else (
           l = 74,
           b += 48,
-          rowHeight += 48,
-          wordLeft = l
+          h += 48,
+          d = l
         )
       } while (++n < k)
       e.save(),
