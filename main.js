@@ -68,5 +68,5 @@ d.onclick = async () => {
   (e = new OffscreenCanvas(w += 110, a))
     .getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(o, 0, 0, w, a)),
   (p = d.createElement("a")).href = URL.createObjectURL(await e.convertToBlob()),
-  p.click(p.download = "")
+  p.click(p.download = "tiertext.png")
 }
