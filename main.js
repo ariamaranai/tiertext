@@ -1,72 +1,70 @@
+onbeforeunload = e => e.preventDefault(),
 d.onclick = async () => {
-  let o = new OffscreenCanvas(2496, 4096),
+  let o = new OffscreenCanvas(2560, 4096),
       e = o.getContext("2d", { alpha: !1 }),
       a = 2,
       b = 56,
-      w = 730,
-      i = 0,
-      d = document,
-      p = d.body.getElementsByTagName("p");
-  e.fillRect(0, 0, 2496, 4096),
+      w = 792,
+      i = 7;
+  e.fillRect(0, 0, 2560, 4096),
   e.fillStyle = "#ddd",
   e.font = "600 32px menlo,consolas,monospace,yu gothic,sans-serif",
   e.textBaseline = "middle";
-  do {
+  while (i) {
     let l = 74,
         h = 108,
-        t = p[i].textContent.trim();
-    if (t) {
-      let o = 0,
-          d = l,
-          n = 0,
-          k = (t = [...t]).length;
-      do {
-        let c = t[n];
-        if (c != "\n") {
+        t = [...(d = d.nextSibling).textContent.trimEnd()],
+        wordWidth = 0,
+        wordLeft = 74,
+        k = 0;
+    while (++k < t.length) {
+      let c = t[k];
+      if (c != "\n")
+        if (c != "\r") {
           let f = e.measureText(c);
           let r = (f = f.width + f.actualBoundingBoxLeft) + l;
-          r < 2476 ? (
-            e.fillText(c, l, b),
-            l = r,
-            d += f
-          ) : (
-            l = 74,
-            b += 48,
-            h += 48,
-            /s/.test(c)
-              ? d = 74
-              : (
-              o < 2418
-                  ? (
-                    e.drawImage(o, d, f = b - 16, o, 32, l, b, o, 32),
-                    e.clearRect(d, f, o, 32)
-                  )
-                  : e.fillText(c, l, b),
-                l += wordWidth
+          wordWidth = /\s/.test(c)
+            ? (
+              wordLeft = l = r < 2540
+                ? l + f
+                : (b += 48, h += 48, 74),
+                0
               )
-          )
-        } else (
-          l = 74,
-          b += 48,
-          h += 48,
-          d = l
-        )
-      } while (++n < k)
-      e.save(),
-      e.fillStyle = ["#80b","#a10","#b70","#a90","#183","#068","#136"][i],
-      e.fillRect(2, a, 64, h),
-      e.fillStyle = "#ddd",
-      e.font = "600 40px serif",
-      e.textAlign = "center",
-      e.fillText(["𝐒","𝐀","𝐁","𝐂","𝐃","𝐄","𝐅"][i], 34, a + h / 2),
-      a += h + 2,
-      b += 110,
-      w < l && (w = l),
-      e.restore()
+            : (
+              l = r < 2540
+                ? (e.fillText(c, l, b), r)
+                : (
+                  h += 48,
+                  e.drawImage(o, wordLeft, (b += 48) - 64, wordWidth, 32, 74, b - 16, wordWidth, 32),
+                  e.clearRect(wordLeft, b - 64, wordWidth, 32),
+                  e.fillText(c, l = wordWidth + (wordLeft = 74), b),
+                  w = 2560,
+                  l + f
+                ),
+              wordWidth + f
+            )
+
+        }
+      else (
+        wordWidth = 0,
+        wordLeft = l = 74,
+        b += 48,
+        h += 48
+      )
     }
-  } while (++i < 7);
-  (e = new OffscreenCanvas(w += 110, a))
+    e.save(e.fillStyle = ["#136","#068","#183","#a90","#b70","#a10","#80b"][--i]),
+    e.fillRect(2, a, 64, h),
+    e.fillStyle = "#ddd",
+    e.font = "600 40px serif",
+    e.textAlign = "center",
+    e.fillText(t[0], 34, a + h / 2),
+    a += h + 2,
+    b += 110,
+    e.restore(w < l && (w = l))
+  };
+  (e = new OffscreenCanvas(w += 48, a))
     .getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(o, 0, 0, w, a)),
-  (p = d.createElement("a")).href = URL.createObjectURL(await e.convertToBlob()),
-  p.click(p.download = "tiertext.png")
+  e = (o = document.createElement("a")).href = URL.createObjectURL(await e.convertToBlob()),
+  o.click(o.download = "tiertext.png"),
+  URL.revokeObjectURL(e)
 }
