@@ -16,10 +16,9 @@ b {
 }
 p {
   align-self: center;
-  padding: 18 4;
-  margin: 0;
-  font-size: 16;
-  flex-grow: 1;
+  width: calc(100% - 42px);
+  padding: 18 0;
+  margin: 0 4;
   line-height: 24px;
   outline: 0
 }
@@ -29,12 +28,12 @@ a {
   color: #b9d
 }
 body {
-  font-size: 18;
+  font-size: 16;
   font-weight: 600;
   color: #ddd;
   font-feature-settings: "palt";
   font-family: menlo,consolas,monospace,yu gothic,sans-serif;
-  width: min(100%,1248px);
+  width: min(100%,1080px);
   line-height: 3;
   text-indent: 8;
   margin: 0 auto;
