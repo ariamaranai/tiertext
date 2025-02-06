@@ -3,7 +3,9 @@ let css = (await Bun.file("main.css").text())
 let js = (await Bun.file("main.js").text())
   .replace(/(?<!let)\s/g, "")
   .replace("(^|)", "(^| )")
-  .replace("asynce", "async e");
+  .replaceAll("newOff", "new Off")
+  .replace("asynce", "async e")
+  .replaceAll("await", "await ")
 let html = (await Bun.file("main.htm").text())
   .replaceAll("\n", "")
   .replace("/*css*/", css);
