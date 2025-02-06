@@ -32,7 +32,7 @@ body {
   font-weight: 600;
   color: #ddd;
   font-feature-settings: "palt";
-  font-family: menlo,consolas,monospace,yu gothic,sans-serif;
+  font-family: menlo,consolas,yu gothic,sans-serif;
   width: min(100%,1080px);
   line-height: 3;
   text-indent: 8;
