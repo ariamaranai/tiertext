@@ -13,17 +13,17 @@ d.onclick = async e => {
         let c = t[s];
         if (c != "\n") {
           if (c != "\r") {
-            let f = e.measureText(c), x = (f = f.width + f.actualBoundingBoxLeft) + l;
+            let f = e.measureText(c), r = (f = f.width + f.actualBoundingBoxLeft) + l;
             m = /\s/.test(c)
               ? (
-                h = l = x < 2152
-                  ? x
+                h = l = r < 2152
+                  ? r
                   : (b += 48, 74),
                 0
                 )
               : (
-                l = x < 2152
-                  ? (e.fillText(c, l, b), x)
+                l = r < 2152
+                  ? (e.fillText(c, l, b), r)
                   : (
                     h > 74
                       ? (
