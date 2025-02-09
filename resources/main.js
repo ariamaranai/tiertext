@@ -1,6 +1,6 @@
 onbeforeunload = e => e.preventDefault(),
 d.onclick = async e => {
-  let o = new OffscreenCanvas(2160, 4096), b = 60, w = 792, a = 2, i = 7, n = d;
+  let o = new OffscreenCanvas(2160, 4096), b = 60, w = 1150, a = 2, i = 7, n = d;
   (e = o.getContext("2d", { alpha: !1 })).fillRect(0, 0, 2160, 4096),
   e.fillStyle = "#ddd",
   e.font = "600 32px menlo,consolas,yu gothic,sans-serif",
@@ -28,12 +28,12 @@ d.onclick = async e => {
                     h > 74
                       ? (
                         e.drawImage(o, h, w = (b += 48) - 64, m, 32, 74, b - 16, m, 32),
-                        e.clearRect(h, w, m, 32),
+                        e.clearRect(h, w, 2072, 32),
                         e.fillText(c, l = m + (h = 74), b),
                         w = 2160,
                         l + f
                       )
-                      : (b += 48, 74)
+                      : (b += 48, w = 2160, 74)
                   ),
                 m + f
               )
@@ -55,7 +55,7 @@ d.onclick = async e => {
       e.restore(b += 110)
     }
   }
-  (b = new OffscreenCanvas(w += 48, a)).getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(o, 0, 0, w, a)),
+  (b = new OffscreenCanvas(w += 110, a)).getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(o, 0, 0, w, a)),
   b = (o = document.createElement("a")).href = URL.createObjectURL(await b.convertToBlob()),
   o.click(o.download = "tiertext.png"),
   URL.revokeObjectURL(b)
