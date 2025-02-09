@@ -25,15 +25,15 @@ d.onclick = async e => {
                 l = r < 2152
                   ? (e.fillText(c, l, b), r)
                   : (
-                    h > 74
+                    (b += 48, h > 74)
                       ? (
-                        e.drawImage(o, h, w = (b += 48) - 64, m, 32, 74, b - 16, m, 32),
+                        e.drawImage(o, h, w = b - 64, m, 32, 74, b - 16, m, 32),
                         e.clearRect(h, w, 2072, 32),
                         e.fillText(c, l = m + (h = 74), b),
                         w = 2160,
                         l + f
                       )
-                      : (w = 2160, b += 48, 74)
+                      : (w = 2160, b, 74)
                   ),
                 m + f
               )
