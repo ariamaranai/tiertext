@@ -16,8 +16,7 @@ b {
 }
 p {
   align-self: center;
-  width: -webkit-fill-available;
-  width: -moz-available;
+  width: calc(100% - 48px);
   padding: 18 0;
   margin: 0 6;
   line-height: 24px;
