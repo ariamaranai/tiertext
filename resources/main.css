@@ -11,7 +11,7 @@ dt {
 b {
   align-content: center;
   text-align: center;
-  width: 28;
+  width: 32;
   font-size: 20
 }
 p {
@@ -20,7 +20,7 @@ p {
   width: -moz-available;
   padding: 18 0;
   margin: 0 6;
-  line-height: 20px;
+  line-height: 24px;
   outline: 0
 }
 a {
@@ -29,7 +29,7 @@ a {
   color: #b9d
 }
 body {
-  font-size: 14;
+  font-size: 16;
   font-weight: 600;
   color: #ddd;
   font-feature-settings: "palt";
