@@ -8,7 +8,7 @@ let js = (await Bun.file("main.js").text())
   .replaceAll("await", "await ")
   .replaceAll('"600', '"600 ')
   .replace("20px", "20px ")
-  .replace("30px", "30px ")
+  .replace("30px", "30px ");
 let html = (await Bun.file("main.htm").text())
   .replaceAll("\n", "")
   .replace("/*css*/", css);
