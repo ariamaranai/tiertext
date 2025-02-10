@@ -11,15 +11,15 @@ dt {
 b {
   align-content: center;
   text-align: center;
-  width: 32;
+  width: 28;
   font-size: 20
 }
 p {
   align-self: center;
-  width: calc(100% - 42px);
+  width: -webkit-fill-available;
   padding: 18 0;
-  margin: 0 4;
-  line-height: 24px;
+  margin: 0 6;
+  line-height: 20px;
   outline: 0
 }
 a {
@@ -28,11 +28,11 @@ a {
   color: #b9d
 }
 body {
-  font-size: 16;
+  font-size: 14;
   font-weight: 600;
   color: #ddd;
   font-feature-settings: "palt";
-  font-family: menlo,consolas,yu gothic,sans-serif;
+  font-family: menlo,consolas,sans-serif;
   width: min(100%,1080px);
   line-height: 3;
   text-indent: 8;
