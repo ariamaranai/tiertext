@@ -4,7 +4,8 @@ d.onclick = async e => {
   (e = o.getContext("2d", { alpha: !1 })).fillRect(0, 0, 2048, 4096),
   e.fillStyle = "#ddd",
   e.font = "600 20px menlo,consolas,sans-serif",
-  e.textBaseline = "middle";
+  e.textBaseline = "middle",
+  e.textRendering = "optimizeLegibility";
   while (i) {
     let t = (n = n.nextSibling).textContent.slice(2).trim(--i);
     if (t &&= [...t]) {
@@ -48,7 +49,7 @@ d.onclick = async e => {
       e.fillStyle = "#ddd",
       e.font = "600 30px serif",
       e.textAlign = "center",
-      e.fillText(["𝐅","𝐄","𝐃","𝐂","𝐁","𝐀","𝐒"][i], 22, a + m / 2),
+      e.fillText(["𝐅","𝐄","𝐃","𝐂","𝐁","𝐀","𝐒"][i], 22, a - 2 + m / 2),
       a = b + 47,
       e.restore(b += 92)
     }
