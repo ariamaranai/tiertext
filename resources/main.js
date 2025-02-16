@@ -1,6 +1,6 @@
 onbeforeunload = e => e.preventDefault(),
 d.onclick = async e => {
-  let o = new OffscreenCanvas(2160, 4096), b = 60, w = 1160, a = 2, i = 7, n = d;
+  let o = new OffscreenCanvas(2160, 4096), b = 60, w = 990, a = 2, i = 7, n = d;
   (e = o.getContext("2d", { alpha: !1 })).fillRect(0, 0, 2160, 4096),
   e.fillStyle = "#ddd",
   e.font = "600 32px menlo,consolas,sans-serif",
