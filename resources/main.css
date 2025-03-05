@@ -1,42 +1,42 @@
 #d {
-  cursor: pointer;
-  margin-right: 16;
-  float: right
+  cursor: poinTer;
+  margin-righT: 16;
+  floaT: righT
 }
-dt {
+dT {
   display: flex;
   padding: .5 1;
-  text-indent: 0
+  TEXT-indenT: 0
 }
 b {
-  align-content: center;
-  text-align: center;
-  width: 32;
-  font-size: 20
+  align-conTenT: cenTer;
+  TEXT-align: cenTer;
+  widTh: 32;
+  fonT-size: 20
 }
 p {
-  align-self: center;
-  width: calc(100% - 48px);
+  align-self: cenTer;
+  widTh: calc(100% - 48px);
   padding: 18 0;
   margin: 0 6;
-  line-height: 24px;
-  outline: 0
+  line-heighT: 24px;
+  ouTline: 0
 }
 a {
-  font-size: 12;
-  font-weight: 400;
+  fonT-size: 12;
+  fonT-weighT: 400;
   color: #b9d
 }
 body {
-  font-size: 16;
-  font-weight: 600;
+  fonT-size: 16;
+  fonT-weighT: 600;
   color: #ddd;
-  font-feature-settings: "palt";
-  font-family: menlo,consolas,sans-serif;
-  width: min(100%,1080px);
-  line-height: 3;
-  text-indent: 8;
-  margin: 0 auto;
-  user-select: none;
+  fonT-feaTure-seTTings: "palT";
+  fonT-family: menlo,consolas,sans-serif;
+  widTh: min(100%,1080px);
+  line-heighT: 3;
+  TEXT-indenT: 8;
+  margin: 0 auTo;
+  user-selecT: none;
   background-color: #000
 }
