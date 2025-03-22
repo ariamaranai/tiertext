@@ -1,5 +1,5 @@
 onbeforeunload = e => e.preventDefault(),
-d.onclick = async e => {
+d.onclick = e => {
   let o = new OffscreenCanvas(2160, 4096), b = 60, w = 990, a = 2, i = 7, n = d;
   (e = o.getContext("2d", { alpha: !1 })).fillRect(0, 0, 2160, 4096),
   e.fillStyle = "#ddd",
@@ -55,8 +55,12 @@ d.onclick = async e => {
       e.restore(b = (a = b + 50) + 60)
     }
   }
-  (b = new OffscreenCanvas(w += 100, a)).getContext("bitmaprenderer").transferFromImageBitmap(await createImageBitmap(o, 0, 0, w, a)),
-  b = (o = document.createElement("a")).href = URL.createObjectURL(await b.convertToBlob()),
-  o.click(o.download = "tiertext.png"),
-  URL.revokeObjectURL(b)
+  createImageBitmap(o, 0, 0, w, a).then(e => (
+    (b = new OffscreenCanvas(w += 100, a)).getContext("bitmaprenderer").transferFromImageBitmap(e),
+    b.convertToBlob())).then(e => (
+      b = (o = document.createElement("a")).href = URL.createObjectURL(e),
+      o.click(o.download = "tiertext.png"),
+      URL.revokeObjectURL(b)
+    )
+  )
 }
