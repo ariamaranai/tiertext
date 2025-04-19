@@ -3,9 +3,8 @@ d.onclick = e => {
   let o = new OffscreenCanvas(2160, 4096), b = 60, w = 990, a = 2, i = 7, n = d;
   (e = o.getContext("2d", { alpha: !1 })).fillRect(0, 0, 2160, 4096),
   e.fillStyle = "#ddd",
-  e.font = "600 32px menlo,consolas,sans-serif",
-  e.textBaseline = "middle",
-  e.textRendering = "optimizeLegibility";
+  e.font = "600 32px consolas,menlo,sans-serif",
+  e.textBaseline = "middle";
   while (i) {
     let t = (n = n.nextSibling).textContent.slice(2).trim(--i);
     if (t &&= [...t]) {
