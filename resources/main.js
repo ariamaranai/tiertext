@@ -9,7 +9,7 @@ d.onclick = e => {
     let t = (n = n.nextSibling).textContent.slice(2).trim(--i);
     if (t &&= [...t]) {
       let m = 0, l = 78, h = 78, s = 0;
-      do {
+      while (s < t.length) {
         let c = t[s];
         if (c != "\n") {
           let f = e.measureText(c).width, r = f + l;
@@ -42,8 +42,9 @@ d.onclick = e => {
           b += 48,
           m = 0,
           h = l = 78
-        )
-      } while (++s < t.length);
+        );
+        ++s
+      }
       e.save(w = Math.max(w, l)),
       e.fillStyle = ["#136","#068","#183","#a90","#b70","#a10","#80b"][i],
       e.fillRect(2, a, 64, m = b - a + 48),
