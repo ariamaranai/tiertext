@@ -24,17 +24,16 @@ d.onclick = e => {
               l = r < 2160
                 ? (e.fillText(c, l, b), r)
                 : (
-                  (b += 48, h > 78)
+                  (b += 48, w = 2160, h > 78)
                     ? (
                       e.drawImage(o, h, b - 64, m, 32, 78, b - 16, m, 32),
                       e.fillStyle = "#000",
                       e.fillRect(h, b - 68, 2078, 36),
                       e.fillStyle = "#ddd",
                       e.fillText(c, l = m + (h = 78), b),
-                      w = 2160,
                       l + f
                     )
-                    : (w = 2160, b, 78)
+                    : 78
                 ),
               m + f
             )
