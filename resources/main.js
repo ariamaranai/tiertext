@@ -37,11 +37,10 @@ d.onclick = e => {
                 ),
               m + f
             )
-        } else (
+        } else
           b += 48,
           m = 0,
-          h = l = 78
-        );
+          h = l = 78;
         ++s
       }
       e.save(w = Math.max(w, l)),
@@ -54,9 +53,9 @@ d.onclick = e => {
       e.restore(b = (a = b + 50) + 60)
     }
   }
-  createImageBitmap(o, 0, 0, w, a).then(e => (
-    (b = new OffscreenCanvas(w += 100, a)).getContext("bitmaprenderer").transferFromImageBitmap(e),
-    b.convertToBlob())).then(e => (
+  createImageBitmap(o, 0, 0, w, a)
+  .then(e => ((b = new OffscreenCanvas(w += 100, a)).getContext("bitmaprenderer").transferFromImageBitmap(e), b.convertToBlob()))
+  .then(e => (
       b = (o = document.createElement("a")).href = URL.createObjectURL(e),
       o.click(o.download = "tiertext.png"),
       URL.revokeObjectURL(b)
