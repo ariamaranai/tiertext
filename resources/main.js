@@ -53,8 +53,8 @@ d.onclick = e => {
       e.restore(b = (a = b + 50) + 60)
     }
   }
-  createImageBitmap(o, 0, 0, w, a)
-  .then(e => ((b = new OffscreenCanvas(w += 100, a)).getContext("bitmaprenderer").transferFromImageBitmap(e), b.convertToBlob()))
+  createImageBitmap(o, 0, 0, w += 100, a)
+  .then(e => ((b = new OffscreenCanvas(w, a)).getContext("bitmaprenderer").transferFromImageBitmap(e), b.convertToBlob()))
   .then(e => (
       b = (o = document.createElement("a")).href = URL.createObjectURL(e),
       o.click(o.download = "tiertext.png"),
