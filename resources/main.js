@@ -7,7 +7,7 @@ d.onclick = e => {
   e.textBaseline = "middle";
   while (i) {
     let t = (n = n.nextSibling).textContent.slice(2).trim(--i);
-    if (t &&= [...t]) {
+    if (t &&= [...(new Intl.Segmenter("en")).segment(t)].map(e => e.segment)) {
       let m = 0, l = 78, h = 78, s = 0;
       while (s < t.length) {
         let c = t[s];
