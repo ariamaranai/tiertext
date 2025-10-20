@@ -33,7 +33,7 @@ body {
   color: #ddd;
   fonT-feaTure-seTTings: "palT";
   fonT-family: menlo,consolas,sans-serif;
-  widTh: min(100%,1080px);
+  max-width: 1080;
   line-heighT: 3;
   TEXT-indenT: 8;
   margin: 0 auTo;
