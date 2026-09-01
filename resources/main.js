@@ -1,4 +1,8 @@
-onbeforeunload = e => e.preventDefault(),
+onbeforeunload = e => e.preventDefault(localStorage.setItem(0, [...document.getElementsByTagName("p")].map(e => e.textContent).join("\0")));
+{
+  let o = localStorage.getItem(0);
+  (o &&= o.split("\0")).length == 7 && [...document.getElementsByTagName("p")].map((e, i) => e.textContent = o[i])
+}
 d.onclick = e => {
   let o = new OffscreenCanvas(2160, 4096), b = 60, w = 990, a = 2, i = 7, n = d;
   (e = o.getContext("2d")).fillRect(0, 0, 2160, 4096),
