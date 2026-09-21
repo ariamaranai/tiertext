@@ -1,13 +1,13 @@
 onbeforeunload = e => e.preventDefault(localStorage.setItem(0, [...document.getElementsByTagName("p")].map(e => e.textContent).join("\0")));
 {
   let o = localStorage.getItem(0);
-  (o &&= o.split("\0")).length == 7 && [...document.getElementsByTagName("p")].map((e, i) => e.textContent = o[i])
+  o && (o = o.split("\0")).length == 7 && [...document.getElementsByTagName("p")].map((e, i) => e.textContent = o[i])
 }
 d.onclick = e => {
   let o = new OffscreenCanvas(2160, 4096), b = 60, w = 990, a = 2, i = 7, n = d;
   (e = o.getContext("2d")).fillRect(0, 0, 2160, 4096),
   e.fillStyle = "#ddd",
-  e.font = "600 32px consolas,menlo,sans-serif",
+  e.font = "600+32px sans-serif",
   e.textBaseline = "middle";
   while (i) {
     let t = (n = n.nextSibling).textContent.slice(2).trim(--i);
@@ -15,7 +15,7 @@ d.onclick = e => {
       let m = 0, l = 78, h = 78, s = 0;
       while (s < t.length) {
         let c = t[s];
-        if (c != "\n") {
+        if (c !== "\n") {
           let f = e.measureText(c).width, r = f + l;
           m = /\s/.test(c)
             ? (
@@ -51,7 +51,7 @@ d.onclick = e => {
       e.fillStyle = ["#136","#068","#183","#a90","#b70","#a10","#80b"][i],
       e.fillRect(2, a, 64, m = b - a + 48),
       e.fillStyle = "#ddd",
-      e.font = "600 40px serif",
+      e.font = "600+40px serif",
       e.textAlign = "center",
       e.fillText(["𝐅","𝐄","𝐃","𝐂","𝐁","𝐀","𝐒"][i], 34, a + m / 2),
       e.restore(b = (a = b + 50) + 60)
